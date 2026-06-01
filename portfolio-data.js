@@ -128,7 +128,7 @@
     setProjects(v) { write(KEYS.projects, v); },
     setBrands(v) { write(KEYS.brands, v); },
     setPassword(v) { write(KEYS.password, v); },
-    getLang() { return read(KEYS.lang, 'en'); },
+    getLang() { return read(KEYS.lang, 'ko'); },
     setLang(v) { write(KEYS.lang, v); },
     getTheme() { return read(KEYS.theme, 'dark'); },
     setTheme(v) { write(KEYS.theme, v); },
