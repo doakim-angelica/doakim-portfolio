@@ -134,15 +134,12 @@
     </div>
 
     <!-- PROJECTS -->
-    <div class="view" id="view-projects">
-      <div class="panel-title">All projects archive
-        <button class="btn btn--sm" onclick="addProject()">+ Add row</button>
-      </div>
-      <table>
-        <thead><tr><th>Title (EN)</th><th>Title (KO)</th><th>Brand</th><th>Category</th><th>Year</th><th></th></tr></thead>
-        <tbody id="projBody"></tbody>
-      </table>
-    </div>
+<div class="view" id="view-projects">
+  <div class="panel-title">All projects archive
+    <button class="btn btn--sm" onclick="addProject()">+ Add project</button>
+  </div>
+  <div id="projBody"></div>
+</div>
 
     <!-- BRANDS -->
     <div class="view" id="view-brands">
@@ -275,19 +272,142 @@ function fillSlot(i){
 }
 
 /* ===== PROJECTS ===== */
+/* ===== PROJECTS ===== */
 function renderProjects(){
-  document.getElementById('projBody').innerHTML = S.projects.map((p,i)=>`<tr>
-    <td><input value="${esc(p.titleEn)}" oninput="updP(${i},'titleEn',this.value)"></td>
-    <td><input value="${esc(p.titleKo)}" oninput="updP(${i},'titleKo',this.value)"></td>
-    <td><input value="${esc(p.brand)}" oninput="updP(${i},'brand',this.value)"></td>
-    <td><select onchange="updP(${i},'category',this.value)">${['Digital','Event','Creative'].map(c=>`<option ${p.category===c?'selected':''}>${c}</option>`).join('')}</select></td>
-    <td style="width:70px;"><input value="${esc(p.year)}" oninput="updP(${i},'year',this.value)"></td>
-    <td style="width:32px;"><button class="row-del" onclick="delProject(${i})">×</button></td>
-  </tr>`).join('');
+  const categories = ['Digital','Event','Creative'];
+  document.getElementById('projBody').innerHTML = S.projects.map((p,i)=>{
+    const k = p.kpis || [{},{},{}];
+
+    return `<div class="card">
+      <div class="card__head">
+        <span class="idx">PROJECT ${i+1}</span>
+        <button class="btn btn--sm btn--danger" onclick="delProject(${i})">Delete project</button>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Title (EN)</label>
+          <input value="${esc(p.titleEn)}" oninput="updP(${i},'titleEn',this.value)">
+        </div>
+        <div class="field">
+          <label>Title (KO)</label>
+          <input value="${esc(p.titleKo)}" oninput="updP(${i},'titleKo',this.value)">
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="field">
+          <label>Brand</label>
+          <input value="${esc(p.brand)}" oninput="updP(${i},'brand',this.value)">
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <select onchange="updP(${i},'category',this.value)">
+            ${categories.map(c=>`<option ${p.category===c?'selected':''}>${c}</option>`).join('')}
+          </select>
+        </div>
+        <div class="field">
+          <label>Year</label>
+          <input value="${esc(p.year)}" oninput="updP(${i},'year',this.value)">
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Period <span class="hint">shown in popup</span></label>
+          <input value="${esc(p.period || p.year || '')}" oninput="updP(${i},'period',this.value)">
+        </div>
+        <div class="field">
+          <label>Tags <span class="hint">comma separated</span></label>
+          <input value="${esc((p.tags || []).join(', '))}" oninput="updP(${i},'tags',this.value.split(',').map(t=>t.trim()).filter(Boolean))">
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Overview (EN) <span class="hint">popup summary</span></label>
+          <textarea oninput="updP(${i},'overviewEn',this.value)">${esc(p.overviewEn || '')}</textarea>
+        </div>
+        <div class="field">
+          <label>Overview (KO) <span class="hint">팝업 요약문</span></label>
+          <textarea oninput="updP(${i},'overviewKo',this.value)">${esc(p.overviewKo || '')}</textarea>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Key actions (EN) <span class="hint">one per line</span></label>
+          <textarea oninput="updP(${i},'actionsEn',linesToArr(this.value))">${esc((p.actionsEn || []).join('\n'))}</textarea>
+        </div>
+        <div class="field">
+          <label>Key actions (KO) <span class="hint">한 줄에 하나씩</span></label>
+          <textarea oninput="updP(${i},'actionsKo',linesToArr(this.value))">${esc((p.actionsKo || []).join('\n'))}</textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>KPIs <span class="hint">shown as popup numbers</span></label>
+        <div class="grid3">
+          ${[0,1,2].map(j=>`<div class="kpi-box">
+            <div class="kt">KPI ${j+1}</div>
+            <div class="field" style="margin-bottom:8px;">
+              <input placeholder="Value e.g. +182%" value="${esc(k[j]?.value || '')}" oninput="updProjectKpi(${i},${j},'value',this.value)">
+            </div>
+            <div class="field" style="margin-bottom:8px;">
+              <input placeholder="Label EN" value="${esc(k[j]?.labelEn || '')}" oninput="updProjectKpi(${i},${j},'labelEn',this.value)">
+            </div>
+            <div class="field" style="margin-bottom:0;">
+              <input placeholder="Label KO" value="${esc(k[j]?.labelKo || '')}" oninput="updProjectKpi(${i},${j},'labelKo',this.value)">
+            </div>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
 }
-function updP(i,key,val){ S.projects[i][key]=val; }
-function addProject(){ S.projects.unshift({titleEn:'New project', titleKo:'새 프로젝트', brand:'Brand', category:'Digital', year:'2026'}); renderProjects(); }
-function delProject(i){ S.projects.splice(i,1); renderProjects(); }
+
+function updP(i,key,val){
+  S.projects[i][key] = val;
+}
+
+function updProjectKpi(i,j,key,val){
+  if(!S.projects[i].kpis) {
+    S.projects[i].kpis = [
+      {value:'',labelEn:'',labelKo:''},
+      {value:'',labelEn:'',labelKo:''},
+      {value:'',labelEn:'',labelKo:''}
+    ];
+  }
+  if(!S.projects[i].kpis[j]) S.projects[i].kpis[j] = {};
+  S.projects[i].kpis[j][key] = val;
+}
+
+function addProject(){
+  S.projects.unshift({
+    titleEn:'New archive project',
+    titleKo:'새 아카이브 프로젝트',
+    brand:'Brand',
+    category:'Digital',
+    year:'2026',
+    period:'2026',
+    overviewEn:'',
+    overviewKo:'',
+    actionsEn:[],
+    actionsKo:[],
+    kpis:[
+      {value:'',labelEn:'',labelKo:''},
+      {value:'',labelEn:'',labelKo:''},
+      {value:'',labelEn:'',labelKo:''}
+    ],
+    tags:[]
+  });
+  renderProjects();
+}
+
+function delProject(i){
+  S.projects.splice(i,1);
+  renderProjects();
+}
 
 /* ===== BRANDS ===== */
 function renderBrands(){
