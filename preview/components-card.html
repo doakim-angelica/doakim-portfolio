@@ -1,0 +1,33 @@
+<!-- @dsCard group="Components" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--bg-0);font-family:var(--font-sans);color:var(--fg-1)}
+  .wrap{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .card{background:var(--bg-2);border:1px solid var(--line-2);border-radius:var(--r-lg);box-shadow:0 4px 16px rgba(0,0,0,.45);overflow:hidden}
+  .card.hov{border-color:var(--line-3);box-shadow:0 12px 40px rgba(0,0,0,.55);transform:translateY(-4px)}
+  .thumb{height:96px;background:linear-gradient(0deg,#16161d,#16161d);position:relative;display:flex;align-items:flex-end;padding:12px}
+  .thumb .ph{position:absolute;inset:0;background:repeating-linear-gradient(45deg,#1d1d27 0 10px,#191921 10px 20px)}
+  .idx{position:relative;font-family:var(--font-mono);font-size:11px;color:var(--accent)}
+  .body{padding:14px 16px 16px}
+  .ttl{font-size:17px;font-weight:600;letter-spacing:-0.01em;margin:0}
+  .meta{font-size:13px;color:var(--fg-3);margin:6px 0 0}
+  .tag{display:inline-block;margin-top:12px;font-size:11px;color:var(--fg-2);border:1px solid var(--line-2);border-radius:var(--r-pill);padding:4px 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="thumb"><div class="ph"></div><span class="idx">01</span></div>
+    <div class="body"><p class="ttl">Mirae Bank rebrand</p><p class="meta">Identity · 2025</p></div>
+  </div>
+  <div class="card hov">
+    <div class="thumb"><div class="ph"></div><span class="idx">02</span></div>
+    <div class="body"><p class="ttl">Sori festival</p><p class="meta">Art direction · 2024</p><span class="tag">hover state →</span></div>
+  </div>
+</div>
+</body>
+</html>

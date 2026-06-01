@@ -1,0 +1,233 @@
+/* ============================================================
+   DOA KIM — Design System
+   colors_and_type.css
+   Foundation tokens: color, typography, spacing, radius, shadow.
+   Dark editorial / agency-grade. Teal accent on near-black.
+   ============================================================ */
+
+/* ----- FONT -------------------------------------------------- */
+/* Pretendard Variable (KO + Latin). Single variable file, wght 100–900. */
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  src: url('./fonts/PretendardVariable.woff2') format('woff2-variations'),
+       url('./fonts/PretendardVariable.woff2') format('woff2');
+}
+
+:root {
+  /* ===== COLOR ============================================== */
+
+  /* Background ramp — near-black with a faint cool cast.
+     Use bg-0 for the page; step up for raised surfaces. */
+  --bg-0: #0F0F14;   /* page base */
+  --bg-1: #15151C;   /* sections / raised */
+  --bg-2: #1B1B24;   /* cards */
+  --bg-3: #24242F;   /* hover / inset fields */
+  --bg-4: #30303D;   /* active / strong hover */
+
+  /* Hairlines & borders — white at low alpha so they read on any surface */
+  --line-1: rgba(255, 255, 255, 0.07);   /* default divider */
+  --line-2: rgba(255, 255, 255, 0.12);   /* card border */
+  --line-3: rgba(255, 255, 255, 0.20);   /* hover border */
+
+  /* Foreground / text */
+  --fg-1: #F4F4F6;   /* primary — soft white, never pure #fff */
+  --fg-2: #ABABB6;   /* secondary / body-dim */
+  --fg-3: #71717F;   /* tertiary / captions, meta */
+  --fg-4: #4A4A56;   /* disabled / faint */
+
+  /* Accent — teal. The single brand color. No gradients. */
+  --accent:        #00BBA9;
+  --accent-bright: #1ED9C6;   /* hover (lighter) */
+  --accent-press:  #00A294;   /* press (darker) */
+  --accent-ink:    #003832;   /* text/icon on a solid teal fill */
+  --accent-dim:    rgba(0, 187, 169, 0.14);  /* tint fills / chips */
+  --accent-glow:   rgba(0, 187, 169, 0.28);  /* focus ring / soft halo */
+
+  /* On-accent text */
+  --on-accent: #03110F;
+
+  /* Status (used sparingly; derived to sit in the dark palette) */
+  --positive: #34D399;
+  --warning:  #F5B544;
+  --danger:   #F4685F;
+
+  /* ===== TYPE =============================================== */
+  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
+               'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  /* Tabular figures for stats / indices */
+  --font-mono: 'Pretendard', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Weights */
+  --w-thin: 100;
+  --w-light: 300;
+  --w-regular: 400;
+  --w-medium: 500;
+  --w-semibold: 600;
+  --w-bold: 700;
+  --w-extrabold: 800;
+  --w-black: 900;
+
+  /* Fluid display scale — editorial, clamps for mobile→PC */
+  --t-display:  clamp(3rem, 9vw, 7.5rem);     /* hero numerals / statements */
+  --t-h1:       clamp(2.25rem, 5.5vw, 4.5rem);
+  --t-h2:       clamp(1.75rem, 3.5vw, 3rem);
+  --t-h3:       clamp(1.375rem, 2.2vw, 1.875rem);
+  --t-h4:       1.25rem;
+  --t-lead:     clamp(1.125rem, 1.6vw, 1.375rem);  /* intro paragraphs */
+  --t-body:     1.0625rem;     /* 17px base body */
+  --t-small:    0.9375rem;     /* 15px */
+  --t-caption:  0.8125rem;     /* 13px */
+  --t-eyebrow:  0.75rem;       /* 12px uppercase label */
+
+  /* Line heights */
+  --lh-tight: 1.04;    /* display */
+  --lh-snug: 1.18;     /* headings */
+  --lh-normal: 1.5;    /* UI text */
+  --lh-relaxed: 1.7;   /* long-form body */
+
+  /* Tracking */
+  --ls-display: -0.03em;   /* tight display */
+  --ls-head: -0.02em;
+  --ls-body: 0;
+  --ls-eyebrow: 0.22em;    /* wide uppercase eyebrows */
+  --ls-label: 0.06em;
+
+  /* ===== SPACING (8pt base, with 4pt half-steps) ============ */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 128px;
+  --sp-11: 192px;     /* section rhythm on PC */
+
+  /* ===== RADIUS ============================================= */
+  /* Restrained. Sharp-ish editorial corners; pills for chips/avatars. */
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+
+  /* ===== SHADOW / ELEVATION ================================= */
+  /* On dark, elevation reads through deeper shadow + a faint top edge.
+     Pair with --line-2 borders for crisp cards. */
+  --sh-1: 0 1px 2px rgba(0, 0, 0, 0.40);
+  --sh-2: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --sh-3: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --sh-4: 0 28px 80px rgba(0, 0, 0, 0.62);
+  /* Teal focus ring */
+  --ring: 0 0 0 3px var(--accent-glow);
+  /* Soft teal halo for hero accents (used VERY sparingly) */
+  --halo: 0 0 60px -12px var(--accent-glow);
+
+  /* ===== MOTION ============================================= */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);   /* standard exits */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 140ms;
+  --dur-base: 240ms;
+  --dur-slow: 480ms;
+
+  /* ===== LAYOUT ============================================= */
+  --container: 1240px;   /* max content width */
+  --gutter: clamp(20px, 5vw, 64px);
+}
+
+/* ============================================================
+   SEMANTIC ELEMENT STYLES
+   Mixin-style classes mapping tokens to roles.
+   ============================================================ */
+
+.ds-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--t-eyebrow);
+  font-weight: var(--w-semibold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.ds-display {
+  font-family: var(--font-sans);
+  font-size: var(--t-display);
+  font-weight: var(--w-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+  color: var(--fg-1);
+  text-wrap: balance;
+}
+
+.ds-h1 {
+  font-size: var(--t-h1);
+  font-weight: var(--w-bold);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-head);
+  color: var(--fg-1);
+  text-wrap: balance;
+}
+
+.ds-h2 {
+  font-size: var(--t-h2);
+  font-weight: var(--w-semibold);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-head);
+  color: var(--fg-1);
+  text-wrap: balance;
+}
+
+.ds-h3 {
+  font-size: var(--t-h3);
+  font-weight: var(--w-semibold);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-head);
+  color: var(--fg-1);
+}
+
+.ds-h4 {
+  font-size: var(--t-h4);
+  font-weight: var(--w-semibold);
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+}
+
+.ds-lead {
+  font-size: var(--t-lead);
+  font-weight: var(--w-regular);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+
+.ds-body {
+  font-size: var(--t-body);
+  font-weight: var(--w-regular);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+
+.ds-small {
+  font-size: var(--t-small);
+  line-height: var(--lh-normal);
+  color: var(--fg-2);
+}
+
+.ds-caption {
+  font-size: var(--t-caption);
+  line-height: var(--lh-normal);
+  color: var(--fg-3);
+}
+
+.ds-num {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum' 1, 'ss01' 1;
+  letter-spacing: -0.01em;
+}

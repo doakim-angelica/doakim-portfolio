@@ -1,0 +1,31 @@
+<!-- @dsCard group="Components" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--bg-0);font-family:var(--font-sans);color:var(--fg-1)}
+  .wrap{padding:28px 24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .chip{font-size:13px;border-radius:var(--r-pill);padding:7px 14px;border:1px solid var(--line-2);color:var(--fg-2)}
+  .chip.on{background:var(--accent-dim);border-color:transparent;color:var(--accent)}
+  .badge{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;border-radius:var(--r-pill);padding:5px 11px}
+  .dot{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--fg-2)}
+  .dot i{width:8px;height:8px;border-radius:50%;background:var(--positive)}
+  .toggle{display:inline-flex;border:1px solid var(--line-2);border-radius:var(--r-pill);overflow:hidden}
+  .toggle span{font-size:12px;font-weight:600;letter-spacing:.06em;padding:7px 13px}
+  .toggle .a{background:var(--fg-1);color:var(--bg-0)}
+  .toggle .b{color:var(--fg-3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="chip on">Identity</span>
+  <span class="chip">Art direction</span>
+  <span class="chip">Motion</span>
+  <span class="badge" style="background:var(--accent-dim);color:var(--accent)">AVAILABLE</span>
+  <span class="dot"><i></i>Open for 2026</span>
+  <span class="toggle"><span class="a">EN</span><span class="b">KO</span></span>
+</div>
+</body>
+</html>

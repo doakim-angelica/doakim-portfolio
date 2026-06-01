@@ -1,0 +1,39 @@
+<!-- @dsCard group="Colors" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--bg-0);font-family:var(--font-sans);color:var(--fg-1)}
+  .wrap{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  h4{margin:0 0 14px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-3);font-weight:600}
+  .lines{display:flex;flex-direction:column;gap:0;border-radius:var(--r-sm);overflow:hidden;background:var(--bg-2)}
+  .lrow{padding:12px 14px;font-size:13px;display:flex;justify-content:space-between}
+  .lrow:nth-child(1){border-bottom:1px solid var(--line-1)}
+  .lrow:nth-child(2){border-bottom:1px solid var(--line-2)}
+  .lrow:nth-child(3){border-bottom:1px solid var(--line-3)}
+  .h{font-family:var(--font-mono);color:var(--fg-3);font-size:11px}
+  .stat{display:flex;align-items:center;gap:12px;margin-bottom:12px;font-size:13px}
+  .dot{width:18px;height:18px;border-radius:var(--r-pill)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div>
+    <h4>Lines &amp; borders</h4>
+    <div class="lines">
+      <div class="lrow"><span>line-1</span><span class="h">white 7%</span></div>
+      <div class="lrow"><span>line-2</span><span class="h">white 12%</span></div>
+      <div class="lrow"><span>line-3</span><span class="h">white 20%</span></div>
+    </div>
+  </div>
+  <div>
+    <h4>Status — used sparingly</h4>
+    <div class="stat"><span class="dot" style="background:#34D399"></span>positive <span class="h">#34D399</span></div>
+    <div class="stat"><span class="dot" style="background:#F5B544"></span>warning <span class="h">#F5B544</span></div>
+    <div class="stat"><span class="dot" style="background:#F4685F"></span>danger <span class="h">#F4685F</span></div>
+  </div>
+</div>
+</body>
+</html>

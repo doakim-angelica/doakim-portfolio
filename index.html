@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOA KIM — Brand & IMC Marketing</title>
+<meta name="description" content="Doa Kim — brand & integrated marketing communications. 7+ years building campaigns for Korea's leading brands.">
+<style>
+/* ============================================================
+   DOA KIM — Portfolio
+   Foundation tokens (dark default + light theme override)
+   ============================================================ */
+@font-face{
+  font-family:'Pretendard';
+  font-weight:100 900;font-display:swap;font-style:normal;
+  src:url('fonts/PretendardVariable.woff2') format('woff2-variations'),
+      url('fonts/PretendardVariable.woff2') format('woff2');
+}
+:root{
+  --bg-0:#0F0F14; --bg-1:#15151C; --bg-2:#1B1B24; --bg-3:#24242F; --bg-4:#30303D;
+  --line-1:rgba(255,255,255,.07); --line-2:rgba(255,255,255,.12); --line-3:rgba(255,255,255,.22);
+  --fg-1:#FFFFFF; --fg-2:#AAAAAA; --fg-3:#71717F; --fg-4:#4A4A56;
+  --accent:#00BBA9; --accent-bright:#1ED9C6; --accent-press:#00A294;
+  --accent-dim:rgba(0,187,169,.12); --accent-glow:rgba(0,187,169,.32); --on-accent:#03110F;
+  --card:#1B1B24; --card-line:var(--line-2);
+  --shadow-2:0 4px 16px rgba(0,0,0,.45); --shadow-3:0 16px 50px rgba(0,0,0,.55); --shadow-4:0 30px 90px rgba(0,0,0,.62);
+  --glow-card:0 0 0 1px var(--accent), 0 18px 60px -12px var(--accent-glow);
+  --font:'Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Segoe UI',sans-serif;
+  --container:1200px; --gutter:clamp(20px,5vw,72px);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html[data-theme="light"]{
+  --bg-0:#F6F6F3; --bg-1:#FFFFFF; --bg-2:#FFFFFF; --bg-3:#EDEDEA; --bg-4:#E2E2DE;
+  --line-1:rgba(0,0,0,.07); --line-2:rgba(0,0,0,.11); --line-3:rgba(0,0,0,.20);
+  --fg-1:#0F0F14; --fg-2:#55555F; --fg-3:#8A8A93; --fg-4:#B5B5BB;
+  --accent:#009687; --accent-bright:#00B0A0; --accent-press:#00786C;
+  --accent-dim:rgba(0,150,135,.10); --accent-glow:rgba(0,150,135,.28); --on-accent:#FFFFFF;
+  --card:#FFFFFF;
+  --shadow-2:0 4px 18px rgba(15,15,20,.07); --shadow-3:0 16px 44px rgba(15,15,20,.10); --shadow-4:0 30px 80px rgba(15,15,20,.14);
+  --glow-card:0 0 0 1px var(--accent), 0 18px 50px -14px var(--accent-glow);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; scroll-padding-top:96px; overflow-x:clip;}
+body{
+  margin:0; background:var(--bg-0); color:var(--fg-1); font-family:var(--font);
+  -webkit-font-smoothing:antialiased; line-height:1.5; overflow-x:clip;
+  transition:background .5s var(--ease), color .5s var(--ease);
+}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit;}
+.container{width:100%; max-width:var(--container); margin:0 auto; padding-inline:var(--gutter);}
+.num{font-variant-numeric:tabular-nums; letter-spacing:-.01em;}
+.eyebrow{font-size:12px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--accent);}
+.dot{width:8px; height:8px; border-radius:50%; background:var(--accent); display:inline-block;}
+[data-lucide]{width:1em; height:1em; stroke-width:1.75; vertical-align:-.12em;}
+
+/* ---- Reveal (scroll-triggered) ---------------------------- */
+.reveal{opacity:0; transform:translateY(32px); transition:opacity .9s var(--ease), transform .9s var(--ease);}
+.reveal.in{opacity:1; transform:none;}
+.stagger > *{opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
+.stagger.in > *{opacity:1; transform:none;}
+html.no-anim .reveal,html.no-anim .stagger > *,
+body.static .reveal, body.static .stagger > *{opacity:1 !important; transform:none !important; transition:none !important;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  .reveal,.stagger > *{opacity:1 !important; transform:none !important; transition:none !important;}
+  .hero__word > span{transform:none !important;}
+}
+
+/* ---- Buttons ---------------------------------------------- */
+.btn{display:inline-flex; align-items:center; gap:9px; font-size:15px; font-weight:600; letter-spacing:-.01em;
+  border-radius:12px; padding:14px 24px; border:1px solid transparent; cursor:pointer; line-height:1;
+  transition:background .18s var(--ease), border-color .18s var(--ease), transform .18s var(--ease), color .18s var(--ease);}
+.btn--primary{background:var(--accent); color:var(--on-accent);}
+.btn--primary:hover{background:var(--accent-bright); transform:translateY(-2px);}
+.btn--primary:active{background:var(--accent-press); transform:translateY(0);}
+.btn--ghost{background:transparent; color:var(--fg-1); border-color:var(--line-3);}
+.btn--ghost:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-2px);}
+.btn .arrow{font-weight:400;}
+
+/* ============================================================ NAV */
+.nav{position:fixed; top:0; left:0; right:0; z-index:60; transition:background .4s var(--ease), border-color .4s var(--ease), backdrop-filter .4s var(--ease);
+  border-bottom:1px solid transparent;}
+.nav.scrolled{background:color-mix(in srgb, var(--bg-0) 72%, transparent); backdrop-filter:blur(18px) saturate(1.2); border-bottom-color:var(--line-1);}
+.nav__in{max-width:var(--container); margin:0 auto; padding:18px var(--gutter); display:flex; align-items:center; gap:30px;
+  transition:padding .4s var(--ease);}
+.nav.scrolled .nav__in{padding-top:13px; padding-bottom:13px;}
+.nav__logo{display:inline-flex; align-items:flex-end; gap:5px; font-weight:800; font-size:19px; letter-spacing:-.02em; color:var(--fg-1); white-space:nowrap; flex:none;}
+.nav__logo .dot{margin-bottom:5px;}
+.nav__links{display:flex; gap:28px; margin-left:8px;}
+.nav__links a{font-size:14px; color:var(--fg-2); position:relative; padding:4px 0; transition:color .18s var(--ease);}
+.nav__links a:hover{color:var(--fg-1);}
+.nav__links a::after{content:''; position:absolute; left:0; right:100%; bottom:-2px; height:1.5px; background:var(--accent); transition:right .3s var(--ease);}
+.nav__links a:hover::after{right:0;}
+.nav__right{margin-left:auto; display:flex; align-items:center; gap:14px;}
+.lang{display:inline-flex; border:1px solid var(--line-2); border-radius:999px; overflow:hidden;}
+.lang button{background:none; border:none; cursor:pointer; font-size:11px; font-weight:700; letter-spacing:.06em; padding:7px 12px; color:var(--fg-3); transition:all .18s var(--ease);}
+.lang button.on{background:var(--fg-1); color:var(--bg-0);}
+.icon-btn{width:38px; height:38px; border-radius:999px; border:1px solid var(--line-2); background:none; color:var(--fg-1); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:17px; transition:border-color .18s var(--ease), color .18s var(--ease), transform .3s var(--ease);}
+.icon-btn:hover{border-color:var(--accent); color:var(--accent);}
+.nav__burger{display:none;}
+.nav__mobile{display:none;}
+
+/* ============================================================ HERO */
+.hero{position:relative; min-height:100vh; display:flex; align-items:center; padding-top:110px; padding-bottom:60px; overflow:hidden;}
+.hero__bg{position:absolute; inset:0; z-index:0; pointer-events:none;}
+.hero__orb{position:absolute; width:60vw; max-width:760px; aspect-ratio:1; border-radius:50%; left:50%; top:30%; transform:translate(-30%,-40%);
+  background:radial-gradient(circle, var(--accent-glow), transparent 62%); opacity:.5; filter:blur(20px);}
+.hero__grid{position:absolute; inset:0; background-image:linear-gradient(var(--line-1) 1px,transparent 1px),linear-gradient(90deg,var(--line-1) 1px,transparent 1px); background-size:64px 64px; mask-image:radial-gradient(circle at 50% 35%, #000, transparent 72%); opacity:.5;}
+.hero__in{position:relative; z-index:1; width:100%;}
+.hero__eyebrow{display:inline-flex; align-items:center; gap:10px; margin-bottom:30px;}
+.hero__eyebrow .live{width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 0 var(--accent-glow); animation:pulse 2.6s var(--ease) infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 var(--accent-glow);}70%{box-shadow:0 0 0 9px transparent;}100%{box-shadow:0 0 0 0 transparent;}}
+.hero h1{font-size:clamp(3rem,9.5vw,8rem); font-weight:800; line-height:.98; letter-spacing:-.035em; margin:0; text-wrap:balance;}
+.hero__word{display:inline-block; overflow:hidden; vertical-align:top;}
+.hero__word > span{display:inline-block; transform:translateY(110%); transition:transform 1s var(--ease);}
+body.loaded .hero__word > span{transform:none;}
+.hero h1 .teal{color:var(--accent);}
+.hero__tag{font-size:clamp(1.15rem,2vw,1.5rem); color:var(--fg-2); margin:34px 0 0; max-width:30ch; line-height:1.5; text-wrap:pretty; opacity:0; transform:translateY(20px); transition:opacity .9s var(--ease) .6s, transform .9s var(--ease) .6s;}
+body.loaded .hero__tag{opacity:1; transform:none;}
+.hero__actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:42px; opacity:0; transform:translateY(20px); transition:opacity .9s var(--ease) .78s, transform .9s var(--ease) .78s;}
+body.loaded .hero__actions{opacity:1; transform:none;}
+body.static .hero__word > span,body.static .hero__tag,body.static .hero__actions{transform:none !important; opacity:1 !important;}
+
+.hero__stats{display:flex; gap:18px; flex-wrap:wrap; margin-top:64px;}
+.statcard{background:var(--card); border:1px solid var(--card-line); border-radius:16px; padding:22px 26px; min-width:150px; box-shadow:var(--shadow-2);
+  opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
+body.loaded .statcard{opacity:1; transform:none;}
+body.static .statcard{opacity:1 !important; transform:none !important;}
+.statcard:nth-child(1){transition-delay:.9s;} .statcard:nth-child(2){transition-delay:1.02s;} .statcard:nth-child(3){transition-delay:1.14s;}
+.statcard .n{font-size:40px; font-weight:800; letter-spacing:-.03em; color:var(--accent); line-height:1;}
+.statcard .l{font-size:13px; color:var(--fg-3); margin-top:8px;}
+
+.scrollind{position:absolute; left:50%; bottom:30px; transform:translateX(-50%); z-index:1; display:flex; flex-direction:column; align-items:center; gap:10px; color:var(--fg-3); font-size:11px; letter-spacing:.2em; text-transform:uppercase;}
+.scrollind .line{width:1px; height:48px; background:var(--line-2); position:relative; overflow:hidden;}
+.scrollind .line::after{content:''; position:absolute; top:-50%; left:0; width:100%; height:50%; background:var(--accent); animation:scrolldown 2.2s var(--ease) infinite;}
+@keyframes scrolldown{0%{top:-50%;}100%{top:100%;}}
+
+/* ============================================================ SECTIONS */
+.section{padding-block:clamp(80px,13vh,180px); position:relative;}
+.section--alt{background:var(--bg-1);}
+.sec-head{margin-bottom:64px; max-width:760px;}
+.sec-head .eyebrow{display:block; margin-bottom:18px;}
+.sec-head h2{font-size:clamp(2rem,4.4vw,3.4rem); font-weight:800; letter-spacing:-.03em; line-height:1.06; margin:0; text-wrap:balance;}
+.sec-head p{font-size:18px; color:var(--fg-2); margin:20px 0 0; line-height:1.7; text-wrap:pretty;}
+
+/* ---- About ------------------------------------------------ */
+.about{display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,7vw,100px); align-items:start;}
+.about__narr p{font-size:18px; line-height:1.8; color:var(--fg-2); margin:0 0 22px; text-wrap:pretty;}
+.about__narr p strong{color:var(--fg-1); font-weight:600;}
+.timeline{border-left:1px solid var(--line-2); padding-left:0;}
+.tl-item{position:relative; padding:0 0 32px 28px; border-left:2px solid transparent; margin-left:-1px;}
+.tl-item::before{content:''; position:absolute; left:-6px; top:4px; width:10px; height:10px; border-radius:50%; background:var(--bg-0); border:2px solid var(--accent);}
+.tl-item:hover{border-left-color:var(--accent);}
+.tl-year{font-size:13px; font-weight:700; color:var(--accent); letter-spacing:.02em;}
+.tl-role{font-size:17px; font-weight:600; margin:4px 0 3px;}
+.tl-org{font-size:14px; color:var(--fg-3);}
+
+/* ---- Skills ----------------------------------------------- */
+.skills{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
+.skill{background:var(--card); border:1px solid var(--card-line); border-radius:18px; padding:34px 32px; box-shadow:var(--shadow-2);
+  transition:box-shadow .4s var(--ease), border-color .3s var(--ease); transform-style:preserve-3d; will-change:transform; position:relative;}
+.skill:hover{border-color:var(--accent); box-shadow:var(--shadow-3);}
+.skill__num{font-size:13px; font-weight:700; color:var(--accent); letter-spacing:.1em;}
+.skill h3{font-size:22px; font-weight:700; letter-spacing:-.02em; margin:18px 0 12px;}
+.skill p{font-size:15px; color:var(--fg-2); line-height:1.65; margin:0;}
+.skill__ico{position:absolute; top:30px; right:30px; color:var(--accent); font-size:22px; opacity:.7;}
+
+/* ---- Selected works (2x2) --------------------------------- */
+.works{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+.work{position:relative; border-radius:20px; overflow:hidden; cursor:pointer; aspect-ratio:16/11; min-height:300px; border:1px solid var(--card-line);
+  background:var(--bg-2); box-shadow:var(--shadow-2);
+  transition:transform .5s var(--ease), box-shadow .5s var(--ease), border-color .4s var(--ease);}
+.work:hover{transform:translateY(-8px) scale(1.012); box-shadow:var(--glow-card); border-color:transparent;}
+.work__art{position:absolute; inset:0; transition:transform .7s var(--ease);}
+.work:hover .work__art{transform:scale(1.06);}
+.work__art::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, transparent 30%, rgba(8,8,11,.78) 100%);}
+.work__top{position:absolute; top:0; left:0; right:0; z-index:2; display:flex; justify-content:space-between; align-items:center; padding:24px 26px;}
+.work__cat{font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#fff; background:rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.18); padding:6px 12px; border-radius:999px; backdrop-filter:blur(6px);}
+.work__arrow{width:42px; height:42px; border-radius:50%; background:var(--accent); color:var(--on-accent); display:flex; align-items:center; justify-content:center; font-size:20px;
+  opacity:0; transform:translate(-6px,6px) scale(.9); transition:all .4s var(--ease);}
+.work:hover .work__arrow{opacity:1; transform:none;}
+.work__btm{position:absolute; left:0; right:0; bottom:0; z-index:2; padding:28px 30px;}
+.work__brand{font-size:13px; color:rgba(255,255,255,.7); font-weight:600; letter-spacing:.02em;}
+.work__title{font-size:clamp(1.3rem,2vw,1.7rem); font-weight:700; letter-spacing:-.02em; color:#fff; margin:7px 0 0; line-height:1.18;}
+.work__period{font-size:13px; color:rgba(255,255,255,.55); margin-top:10px;}
+.work--empty{display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px; cursor:default; border-style:dashed; border-color:var(--line-2); background:transparent; box-shadow:none;}
+.work--empty:hover{transform:none; box-shadow:none; border-color:var(--line-3);}
+.work--empty .ph-ico{font-size:30px; color:var(--fg-3);}
+.work--empty .ph-txt{font-size:15px; color:var(--fg-3); font-weight:500;}
+
+/* ---- All projects ----------------------------------------- */
+.filterbar{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:40px;}
+.filterbar button{background:none; border:1px solid var(--line-2); color:var(--fg-2); font-size:14px; padding:9px 18px; border-radius:999px; cursor:pointer; transition:all .2s var(--ease);}
+.filterbar button:hover{border-color:var(--line-3); color:var(--fg-1);}
+.filterbar button.on{background:var(--accent-dim); border-color:transparent; color:var(--accent); font-weight:600;}
+.projgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+.proj{background:var(--card); border:1px solid var(--card-line); border-radius:14px; padding:22px 22px 20px; transition:transform .4s var(--ease), border-color .3s var(--ease), box-shadow .4s var(--ease);}
+.proj:hover{transform:translateY(-4px); border-color:var(--accent); box-shadow:var(--shadow-2);}
+.proj__cat{font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent);}
+.proj__title{font-size:16px; font-weight:600; letter-spacing:-.01em; margin:12px 0 6px; line-height:1.35;}
+.proj__meta{font-size:13px; color:var(--fg-3);}
+.proj.hide{display:none;}
+
+/* ---- Brands ----------------------------------------------- */
+.brands{display:flex; flex-wrap:wrap; gap:14px;}
+.brandpill{font-size:16px; font-weight:500; color:var(--fg-2); border:1px solid var(--line-2); border-radius:999px; padding:12px 22px; transition:all .3s var(--ease);}
+.brandpill:hover{border-color:var(--accent); color:var(--fg-1); background:var(--accent-dim);}
+
+/* ---- Contact ---------------------------------------------- */
+.contact{text-align:center; padding-block:clamp(90px,16vh,200px);}
+.contact .eyebrow{display:block; margin-bottom:24px;}
+.contact h2{font-size:clamp(2.4rem,6.5vw,5.5rem); font-weight:800; letter-spacing:-.035em; line-height:1.02; margin:0 auto; max-width:16ch; text-wrap:balance;}
+.contact__actions{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:48px;}
+.contact__mail{display:block; font-size:clamp(1.1rem,2.4vw,1.6rem); color:var(--accent); font-weight:600; margin-top:40px; letter-spacing:-.01em;}
+.contact__mail:hover{text-decoration:underline; text-underline-offset:6px;}
+
+/* ---- Footer ----------------------------------------------- */
+.footer{border-top:1px solid var(--line-1);}
+.footer__in{display:flex; justify-content:space-between; align-items:center; padding-block:30px; flex-wrap:wrap; gap:14px;}
+.footer__logo{display:inline-flex; align-items:flex-end; gap:4px; font-weight:800; font-size:16px; letter-spacing:-.02em;}
+.footer__logo .dot{width:6px;height:6px;margin-bottom:4px;}
+.footer__copy{font-size:13px; color:var(--fg-3);}
+
+/* ---- Modal ------------------------------------------------ */
+.modal{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:24px; opacity:0; pointer-events:none; transition:opacity .35s var(--ease);}
+.modal.open{opacity:1; pointer-events:auto;}
+.modal__scrim{position:absolute; inset:0; background:rgba(6,6,9,.78); backdrop-filter:blur(8px);}
+.modal__panel{position:relative; width:100%; max-width:760px; max-height:88vh; overflow-y:auto; background:var(--bg-2); border:1px solid var(--line-2); border-radius:24px; box-shadow:var(--shadow-4);
+  transform:scale(.94) translateY(14px); opacity:0; transition:transform .4s var(--ease), opacity .4s var(--ease);}
+.modal.open .modal__panel{transform:none; opacity:1;}
+.modal__hero{aspect-ratio:16/7; position:relative; display:flex; align-items:flex-end; padding:28px;}
+.modal__hero::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent,rgba(8,8,11,.6));}
+.modal__cat{position:relative; z-index:1; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#fff; background:rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.18); padding:6px 12px; border-radius:999px;}
+.modal__close{position:absolute; top:18px; right:18px; z-index:3; width:40px; height:40px; border-radius:50%; background:rgba(0,0,0,.4); border:1px solid var(--line-2); color:#fff; cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center;}
+.modal__close:hover{background:rgba(0,0,0,.62);}
+.modal__body{padding:clamp(26px,3.5vw,42px);}
+.modal__brand{font-size:14px; color:var(--accent); font-weight:600;}
+.modal__title{font-size:clamp(1.6rem,3.2vw,2.4rem); font-weight:800; letter-spacing:-.03em; line-height:1.1; margin:8px 0 6px;}
+.modal__period{font-size:14px; color:var(--fg-3);}
+.modal__overview{font-size:17px; line-height:1.75; color:var(--fg-2); margin:26px 0 0; text-wrap:pretty;}
+.kpis{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:30px 0; padding:26px 0; border-top:1px solid var(--line-1); border-bottom:1px solid var(--line-1);}
+.kpi .v{font-size:clamp(1.8rem,3.4vw,2.6rem); font-weight:800; color:var(--accent); letter-spacing:-.03em; line-height:1;}
+.kpi .k{font-size:13px; color:var(--fg-3); margin-top:8px;}
+.modal__sub{font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--fg-3); margin:0 0 16px;}
+.actions-list{list-style:none; margin:0 0 28px; padding:0;}
+.actions-list li{display:flex; gap:13px; align-items:flex-start; padding:11px 0; border-bottom:1px solid var(--line-1); font-size:15px; color:var(--fg-2);}
+.actions-list li::before{content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); margin-top:8px; flex:none;}
+.tags{display:flex; flex-wrap:wrap; gap:9px;}
+.tag{font-size:13px; color:var(--fg-2); border:1px solid var(--line-2); border-radius:999px; padding:7px 14px;}
+
+/* ============================================================ RESPONSIVE */
+@media (max-width:980px){
+  .about,.works,.skills{grid-template-columns:1fr;}
+  .projgrid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:680px){
+  .nav__links{display:none;}
+  .nav__burger{display:flex;}
+  .nav__mobile{display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:4px; padding:14px var(--gutter) 26px;
+    background:color-mix(in srgb,var(--bg-0) 96%,transparent); backdrop-filter:blur(18px); border-bottom:1px solid var(--line-1);}
+  .nav__mobile.open{display:flex;}
+  .nav__mobile a{font-size:22px; font-weight:600; padding:12px 0; display:flex; justify-content:space-between; align-items:center; color:var(--fg-1);}
+  .nav__mobile a .arrow{color:var(--accent);}
+  .projgrid{grid-template-columns:1fr;}
+  .kpis{grid-template-columns:1fr; gap:18px; text-align:center;}
+  .hero__stats{gap:12px;}
+  .statcard{flex:1; min-width:calc(33% - 12px); padding:16px 14px;}
+  .statcard .n{font-size:28px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="nav__in">
+    <a href="#top" class="nav__logo">DOA KIM<i class="dot"></i></a>
+    <nav class="nav__links">
+      <a href="#about" data-en="About" data-ko="소개">About</a>
+      <a href="#skills" data-en="Skills" data-ko="역량">Skills</a>
+      <a href="#works" data-en="Work" data-ko="작업">Work</a>
+      <a href="#projects" data-en="Projects" data-ko="프로젝트">Projects</a>
+      <a href="#contact" data-en="Contact" data-ko="연락">Contact</a>
+    </nav>
+    <div class="nav__right">
+      <div class="lang" role="group" aria-label="Language">
+        <button id="lang-en" class="on" onclick="setLang('en')">EN</button>
+        <button id="lang-ko" onclick="setLang('ko')">KO</button>
+      </div>
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle theme" onclick="toggleTheme()"><i data-lucide="moon"></i></button>
+      <button class="icon-btn nav__burger" id="burger" aria-label="Menu" onclick="toggleMenu()"><i data-lucide="menu"></i></button>
+    </div>
+  </div>
+  <nav class="nav__mobile" id="mobileMenu">
+    <a href="#about" data-en="About" data-ko="소개" onclick="closeMenu()">About <span class="arrow">→</span></a>
+    <a href="#skills" data-en="Skills" data-ko="역량" onclick="closeMenu()">Skills <span class="arrow">→</span></a>
+    <a href="#works" data-en="Work" data-ko="작업" onclick="closeMenu()">Work <span class="arrow">→</span></a>
+    <a href="#projects" data-en="Projects" data-ko="프로젝트" onclick="closeMenu()">Projects <span class="arrow">→</span></a>
+    <a href="#contact" data-en="Contact" data-ko="연락" onclick="closeMenu()">Contact <span class="arrow">→</span></a>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero__bg"><div class="hero__grid"></div><div class="hero__orb" id="orb"></div></div>
+  <div class="container hero__in" id="heroInner">
+    <div class="hero__eyebrow"><span class="live"></span><span class="eyebrow" data-en="Brand & IMC · Seoul" data-ko="브랜드 · IMC · 서울">Brand & IMC · Seoul</span></div>
+    <h1 id="heroTitle"></h1>
+    <p class="hero__tag" data-en="Integrated marketing that turns brand moments into measurable momentum." data-ko="브랜드의 순간을 측정 가능한 성장으로 잇는 통합 마케팅."></p>
+    <div class="hero__actions">
+      <a href="#works" class="btn btn--primary" data-en-html="View Work <span class='arrow'>→</span>" data-ko-html="작업 보기 <span class='arrow'>→</span>">View Work <span class="arrow">→</span></a>
+      <a href="#contact" class="btn btn--ghost" data-en="Get in touch" data-ko="연락하기">Get in touch</a>
+    </div>
+    <div class="hero__stats">
+      <div class="statcard"><div class="n num">7<span style="color:var(--fg-3)">+</span></div><div class="l" data-en="Years in IMC" data-ko="년 IMC 경력">Years in IMC</div></div>
+      <div class="statcard"><div class="n num">20<span style="color:var(--fg-3)">+</span></div><div class="l" data-en="Brands" data-ko="브랜드">Brands</div></div>
+      <div class="statcard"><div class="n num">15<span style="color:var(--fg-3)">+</span></div><div class="l" data-en="Campaigns" data-ko="캠페인">Campaigns</div></div>
+    </div>
+  </div>
+  <div class="scrollind"><span data-en="Scroll" data-ko="스크롤">Scroll</span><span class="line"></span></div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="section section--alt" id="about">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-en="About" data-ko="소개">About</span>
+      <h2 data-en="Marketing that respects both the brand and the number." data-ko="브랜드와 숫자를 모두 존중하는 마케팅."></h2>
+    </div>
+    <div class="about">
+      <div class="about__narr reveal">
+        <p data-en-html="I’m <strong>Doa Kim</strong>, an integrated marketing communications specialist with 7+ years inside Korea’s leading IMC agencies." data-ko-html="통합 마케팅 커뮤니케이션 전문가 <strong>김도아</strong>입니다. 국내 주요 IMC 에이전시에서 7년 이상 일했습니다."></p>
+        <p data-en="I plan and run campaigns end to end — from the strategic idea to channel orchestration to the performance read afterward. My work sits where creative ambition meets accountable results." data-ko="전략적 아이디어부터 채널 운영, 그리고 사후 성과 분석까지 캠페인을 처음부터 끝까지 기획하고 운영합니다. 제 일은 크리에이티브한 야망과 책임 있는 결과가 만나는 지점에 있습니다."></p>
+        <p data-en="I’ve built work for brands across tech, finance, F&B, and lifestyle — and I care as much about the spreadsheet as the storyboard." data-ko="테크, 금융, F&B, 라이프스타일 전반의 브랜드를 위해 일해왔으며, 스토리보드만큼이나 스프레드시트에도 진심입니다."></p>
+      </div>
+      <div class="about__right reveal">
+        <div class="timeline stagger" id="timeline"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section class="section" id="skills">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-en="Capabilities" data-ko="역량">Capabilities</span>
+      <h2 data-en="Four disciplines, one integrated practice." data-ko="네 개의 전문 영역, 하나의 통합 실무."></h2>
+    </div>
+    <div class="skills stagger" id="skills-grid"></div>
+  </div>
+</section>
+
+<!-- ================= SELECTED WORKS ================= -->
+<section class="section section--alt" id="works">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-en="Selected work" data-ko="선택된 작업">Selected work</span>
+      <h2 data-en="Campaigns I’m proud to put my name on." data-ko="제 이름을 걸 수 있는 캠페인."></h2>
+    </div>
+    <div class="works reveal" id="works-grid"></div>
+  </div>
+</section>
+
+<!-- ================= ALL PROJECTS ================= -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-en="Archive" data-ko="아카이브">Archive</span>
+      <h2 data-en="All projects." data-ko="전체 프로젝트."></h2>
+    </div>
+    <div class="filterbar reveal" id="filterbar"></div>
+    <div class="projgrid" id="projgrid"></div>
+  </div>
+</section>
+
+<!-- ================= BRANDS ================= -->
+<section class="section section--alt" id="brands">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-en="Trusted by" data-ko="함께한 브랜드">Trusted by</span>
+      <h2 data-en="Brands I’ve had the privilege to build with." data-ko="함께 만들어 온 브랜드들."></h2>
+    </div>
+    <div class="brands stagger" id="brands-grid"></div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="container reveal">
+    <span class="eyebrow" data-en="Let’s talk" data-ko="연락하기">Let’s talk</span>
+    <h2 data-en="Have a brand worth building?" data-ko="함께 만들 브랜드가 있나요?"></h2>
+    <a href="mailto:hello@doakim.kr" class="contact__mail">hello@doakim.kr</a>
+    <div class="contact__actions">
+      <a href="mailto:hello@doakim.kr" class="btn btn--primary" data-en-html="Email me <span class='arrow'>→</span>" data-ko-html="이메일 보내기 <span class='arrow'>→</span>">Email me <span class="arrow">→</span></a>
+      <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="btn btn--ghost"><i data-lucide="linkedin"></i> LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer__in">
+    <span class="footer__logo">DOA KIM<i class="dot"></i></span>
+    <span class="footer__copy">© <span class="num">2026</span> Doa Kim · <span data-en="Seoul, Korea" data-ko="서울, 대한민국">Seoul, Korea</span></span>
+  </div>
+</footer>
+
+<!-- ================= MODAL ================= -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal__scrim" onclick="closeModal()"></div>
+  <div class="modal__panel" role="dialog" aria-modal="true">
+    <button class="modal__close" onclick="closeModal()" aria-label="Close"><i data-lucide="x"></i></button>
+    <div class="modal__hero" id="modalHero"><span class="modal__cat" id="modalCat"></span></div>
+    <div class="modal__body">
+      <div class="modal__brand" id="modalBrand"></div>
+      <h3 class="modal__title" id="modalTitle"></h3>
+      <div class="modal__period" id="modalPeriod"></div>
+      <p class="modal__overview" id="modalOverview"></p>
+      <div class="kpis" id="modalKpis"></div>
+      <div class="modal__sub" data-en="Key actions" data-ko="핵심 활동">Key actions</div>
+      <ul class="actions-list" id="modalActions"></ul>
+      <div class="modal__sub" data-en="Tags" data-ko="태그">Tags</div>
+      <div class="tags" id="modalTags"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="portfolio-data.js"></script>
+<script src="portfolio.js"></script>
+</body>
+</html>

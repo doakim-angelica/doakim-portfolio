@@ -1,0 +1,29 @@
+<!-- @dsCard group="Colors" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--bg-0);font-family:var(--font-sans);color:var(--fg-1)}
+  .wrap{padding:24px}
+  .row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .sw{border-radius:var(--r-md);border:1px solid var(--line-2);overflow:hidden}
+  .chip{height:64px}
+  .meta{padding:10px 12px}
+  .name{font-size:13px;font-weight:600;letter-spacing:-0.01em}
+  .hex{font-size:11px;color:var(--fg-3);font-family:var(--font-mono);margin-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:#0F0F14"></div><div class="meta"><div class="name">bg-0</div><div class="hex">#0F0F14</div></div></div>
+    <div class="sw"><div class="chip" style="background:#15151C"></div><div class="meta"><div class="name">bg-1</div><div class="hex">#15151C</div></div></div>
+    <div class="sw"><div class="chip" style="background:#1B1B24"></div><div class="meta"><div class="name">bg-2</div><div class="hex">#1B1B24</div></div></div>
+    <div class="sw"><div class="chip" style="background:#24242F"></div><div class="meta"><div class="name">bg-3</div><div class="hex">#24242F</div></div></div>
+    <div class="sw"><div class="chip" style="background:#30303D"></div><div class="meta"><div class="name">bg-4</div><div class="hex">#30303D</div></div></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!-- @dsCard group="Components" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--bg-0);font-family:var(--font-sans);color:var(--fg-1)}
+  .wrap{padding:26px 24px}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:center}
+  .t{font-family:var(--font-mono);font-size:10px;color:var(--fg-3);margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+  .btn{width:100%;font-family:inherit;font-size:14px;font-weight:600;border-radius:var(--r-md);padding:12px 0;border:1px solid transparent}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="grid">
+    <div><div class="btn" style="background:#00BBA9;color:var(--on-accent)">Default</div><div class="t">rest</div></div>
+    <div><div class="btn" style="background:#1ED9C6;color:var(--on-accent)">Hover</div><div class="t">bright</div></div>
+    <div><div class="btn" style="background:#00A294;color:var(--on-accent);transform:translateY(1px)">Press</div><div class="t">press</div></div>
+    <div><div class="btn" style="background:#00BBA9;color:var(--on-accent);box-shadow:0 0 0 3px rgba(0,187,169,.28)">Focus</div><div class="t">ring</div></div>
+  </div>
+  <div class="grid" style="margin-top:14px">
+    <div><div class="btn" style="border-color:var(--line-3);color:var(--fg-1)">Default</div><div class="t">secondary</div></div>
+    <div><div class="btn" style="border-color:var(--line-3);color:var(--fg-1);background:rgba(255,255,255,.05)">Hover</div><div class="t">tint</div></div>
+    <div><div class="btn" style="border-color:var(--line-3);color:var(--fg-1);background:rgba(255,255,255,.09);transform:translateY(1px)">Press</div><div class="t">press</div></div>
+    <div><div class="btn" style="color:var(--fg-4);border-color:var(--line-1)">Disabled</div><div class="t">disabled</div></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!-- @dsCard group="Components" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;background:var(--bg-0);font-family:var(--font-sans);color:var(--fg-1)}
+  .wrap{padding:20px}
+  .nav{display:flex;align-items:center;gap:24px;background:rgba(15,15,20,.72);backdrop-filter:blur(14px);border:1px solid var(--line-2);border-radius:var(--r-md);padding:14px 20px}
+  .logo{font-weight:800;font-size:18px;letter-spacing:-0.02em;display:flex;align-items:center;gap:5px}
+  .logo i{width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:8px}
+  .links{display:flex;gap:22px;margin-left:18px}
+  .links a{font-size:14px;color:var(--fg-2);text-decoration:none}
+  .links a.on{color:var(--fg-1)}
+  .right{margin-left:auto;display:flex;align-items:center;gap:14px}
+  .toggle{display:inline-flex;border:1px solid var(--line-2);border-radius:var(--r-pill);overflow:hidden}
+  .toggle span{font-size:11px;font-weight:600;letter-spacing:.06em;padding:6px 11px}
+  .toggle .a{background:var(--fg-1);color:var(--bg-0)}
+  .toggle .b{color:var(--fg-3)}
+  .cta{background:var(--accent);color:var(--on-accent);font-size:13px;font-weight:600;border-radius:var(--r-sm);padding:9px 15px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="nav">
+    <span class="logo">DOA KIM<i></i></span>
+    <span class="links"><a class="on">Work</a><a>About</a><a>Contact</a></span>
+    <span class="right">
+      <span class="toggle"><span class="a">EN</span><span class="b">KO</span></span>
+      <span class="cta">Start a project</span>
+    </span>
+  </div>
+</div>
+</body>
+</html>
