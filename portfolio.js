@@ -136,9 +136,9 @@
 
   function renderProjects() {
     const list = DK.getProjects();
-    document.getElementById('projgrid').innerHTML = list.map((p) => {
+    document.getElementById('projgrid').innerHTML = list.map((p, i) => {
       const hide = filter !== 'all' && p.category !== filter ? ' hide' : '';
-      return '<article class="proj' + hide + '" data-cat="' + p.category + '">' +
+      return '<article class="proj' + hide + '" data-cat="' + p.category + '" onclick="openProjectModal(' + i + ')">' +
         '<div class="proj__cat">' + p.category + '</div>' +
         '<div class="proj__title">' + t(p.titleEn, p.titleKo) + '</div>' +
         '<div class="proj__meta">' + p.brand + ' · <span class="num">' + p.year + '</span></div></article>';
@@ -188,7 +188,66 @@
     document.body.style.overflow = 'hidden';
     icons();
   };
-  window.closeModal = function () {
+   window.openModal = function (i) {
+  const w = DK.getWorks()[i];
+  if (!w || w.placeholder) return;
+  document.getElementById('modalHero').style.background = w.tone || '#13343a';
+  document.getElementById('modalCat').textContent = w.category;
+  document.getElementById('modalBrand').textContent = w.brand;
+  document.getElementById('modalTitle').textContent = t(w.titleEn, w.titleKo);
+  document.getElementById('modalPeriod').textContent = w.period;
+  document.getElementById('modalOverview').textContent = t(w.overviewEn, w.overviewKo);
+  document.getElementById('modalKpis').innerHTML = (w.kpis || []).map((k) =>
+    '<div class="kpi"><div class="v num">' + k.value + '</div><div class="k">' + t(k.labelEn, k.labelKo) + '</div></div>'
+  ).join('');
+  const acts = lang === 'ko' ? (w.actionsKo || []) : (w.actionsEn || []);
+  document.getElementById('modalActions').innerHTML = acts.map((a) => '<li>' + a + '</li>').join('');
+  document.getElementById('modalTags').innerHTML = (w.tags || []).map((tg) => '<span class="tag">' + tg + '</span>').join('');
+  const m = document.getElementById('modal');
+  m.classList.add('open'); m.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  icons();
+};
+
+window.openProjectModal = function (i) {
+  const p = DK.getProjects()[i];
+  if (!p) return;
+
+  document.getElementById('modalHero').style.background = p.tone || 'linear-gradient(135deg,#0c3a3a,#0a2530)';
+  document.getElementById('modalCat').textContent = p.category || '';
+  document.getElementById('modalBrand').textContent = p.brand || '';
+  document.getElementById('modalTitle').textContent = t(p.titleEn, p.titleKo);
+  document.getElementById('modalPeriod').textContent = p.period || p.year || '';
+
+  document.getElementById('modalOverview').textContent = t(
+    p.overviewEn || 'A selected archive project from DOA KIM portfolio.',
+    p.overviewKo || '김도아 포트폴리오의 아카이브 프로젝트입니다.'
+  );
+
+  const kpis = p.kpis || [];
+  document.getElementById('modalKpis').innerHTML = kpis.length
+    ? kpis.map((k) =>
+      '<div class="kpi"><div class="v num">' + k.value + '</div><div class="k">' + t(k.labelEn, k.labelKo) + '</div></div>'
+    ).join('')
+    : '';
+
+  const acts = lang === 'ko' ? (p.actionsKo || []) : (p.actionsEn || []);
+  document.getElementById('modalActions').innerHTML = acts.length
+    ? acts.map((a) => '<li>' + a + '</li>').join('')
+    : '<li>' + t('Detailed scope can be added later.', '상세 업무 범위는 추후 추가할 수 있습니다.') + '</li>';
+
+  document.getElementById('modalTags').innerHTML = (p.tags || [p.category]).map((tg) =>
+    '<span class="tag">' + tg + '</span>'
+  ).join('');
+
+  const m = document.getElementById('modal');
+  m.classList.add('open');
+  m.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  icons();
+};
+   
+   window.closeModal = function () {
     const m = document.getElementById('modal');
     m.classList.remove('open'); m.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
