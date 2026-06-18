@@ -17,8 +17,8 @@
     hero: {
       eyebrow: { en: 'Brand & IMC · Seoul', ko: '브랜드 · IMC · 서울' },
       title: {
-        en: [[{ t: 'Brand' }, { t: 'stories,' }], [{ t: 'built' }, { t: 'to' }, { t: 'perform.', teal: true }]],
-        ko: [[{ t: '브랜드' }, { t: '스토리를' }], [{ t: '성과로' }, { t: '증명합니다.', teal: true }]],
+        en: [[{ t: 'DOA' }, { t: 'KIM' }], [{ t: '2026' }, { t: 'Portfolio.', teal: true }]],
+        ko: [[{ t: 'DOA' }, { t: 'KIM' }], [{ t: '2026' }, { t: 'Portfolio.', teal: true }]],
       },
       tag: {
         en: 'Integrated marketing that turns brand moments into measurable momentum.',
